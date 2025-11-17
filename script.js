@@ -1,28 +1,28 @@
 // ============================================================================ 
-//  Calculadora Web - Base estática em JavaScript
+//  Web Calculator - Static base in JavaScript
 // ---------------------------------------------------------------------------- 
-//  Esta versão não realiza cálculos reais ainda. A ideia é mostrar como você
-//  pode estruturar o código e onde adicionar cada parte da lógica quando estiver
-//  pronto(a). Sinta-se à vontade para modificar e experimentar!
+//  This version now performs real calculations. The idea is to show how you
+//  can structure the code and where to add each part of the logic as you
+//  progress. Feel free to modify and experiment!
 // ============================================================================
 
-// Seleciona os elementos principais do display para você reutilizar depois
+// Selects the main display elements for you to reuse later
 const displayHistory = document.getElementById("display-history");
 const displayCurrent = document.getElementById("display-current");
 
-// Seleciona todos os botões da calculadora
+// Selects all calculator buttons
 const buttons = document.querySelectorAll(".calculator-grid button");
 
-// Estado inicial. Conforme você evoluir a calculadora, pode adicionar outros campos.
+// Initial state. As you evolve the calculator, you can add other fields.
 const calculatorState = {
-  currentValue: "0", // número que está sendo digitado agora
-  storedValue: null, // número guardado para aplicar o operador
-  operator: null, // operador atual (+, -, ×, ÷)
-  overwrite: false, // indica se o próximo número deve substituir o atual
+  currentValue: "0", // number currently being typed
+  storedValue: null, // number stored to apply the operator
+  operator: null, // current operator (+, -, ×, ÷)
+  overwrite: false, // indicates if the next number should replace the current one
 };
 
 /**
- * Atualiza o display com base no estado atual.
+ * Updates the display based on the current state.
  */
 function renderDisplay() {
   const { currentValue, storedValue, operator } = calculatorState;
@@ -32,13 +32,13 @@ function renderDisplay() {
   if (storedValue !== null && operator) {
     displayHistory.textContent = `${storedValue} ${operator}`;
   } else {
-    displayHistory.textContent = "Pronto para calcular";
+    displayHistory.textContent = "Ready to calculate";
   }
 }
 
 /**
- * Adiciona dígitos ao número atual.
- * Se overwrite for true (por exemplo, após um operador), substitui o valor todo.
+ * Adds digits to the current number.
+ * If overwrite is true (e.g., after an operator), replaces the entire value.
  */
 function appendNumber(number) {
   if (calculatorState.overwrite) {
@@ -55,7 +55,7 @@ function appendNumber(number) {
 }
 
 /**
- * Lida com o botão de ponto decimal.
+ * Handles the decimal point button.
  */
 function addDecimal() {
   if (calculatorState.overwrite) {
@@ -70,8 +70,8 @@ function addDecimal() {
 }
 
 /**
- * Guarda o operador escolhido e prepara para o próximo número.
- * Se já houver um operador pendente, primeiro realiza o cálculo.
+ * Stores the chosen operator and prepares for the next number.
+ * If there's already a pending operator, performs the calculation first.
  */
 function chooseOperator(operatorSymbol) {
   if (calculatorState.operator && !calculatorState.overwrite) {
@@ -85,7 +85,7 @@ function chooseOperator(operatorSymbol) {
 }
 
 /**
- * Executa a operação matemática básica.
+ * Executes the basic mathematical operation.
  */
 function compute() {
   if (calculatorState.operator === null || calculatorState.storedValue === null) {
@@ -107,7 +107,7 @@ function compute() {
       result = prev * current;
       break;
     case "÷":
-      result = current === 0 ? "Erro" : prev / current;
+      result = current === 0 ? "Error" : prev / current;
       break;
     default:
       return;
@@ -115,12 +115,12 @@ function compute() {
 
   calculatorState.currentValue = String(result);
   calculatorState.operator = null;
-  calculatorState.storedValue = result === "Erro" ? null : result;
+  calculatorState.storedValue = result === "Error" ? null : result;
   calculatorState.overwrite = true;
 }
 
 /**
- * Alterna o sinal do número atual.
+ * Toggles the sign of the current number.
  */
 function toggleSign() {
   if (calculatorState.currentValue === "0") return;
@@ -130,7 +130,7 @@ function toggleSign() {
 }
 
 /**
- * Converte o número atual em percentual.
+ * Converts the current number to a percentage.
  */
 function convertPercent() {
   const value = parseFloat(calculatorState.currentValue) || 0;
@@ -138,7 +138,7 @@ function convertPercent() {
 }
 
 /**
- * Limpa toda a calculadora.
+ * Clears the entire calculator.
  */
 function resetCalculator() {
   calculatorState.currentValue = "0";
@@ -148,7 +148,7 @@ function resetCalculator() {
 }
 
 /**
- * Handler principal de clique nos botões.
+ * Main button click handler.
  */
 function handleButtonClick(event) {
   const button = event.currentTarget;
@@ -185,9 +185,9 @@ function handleButtonClick(event) {
   renderDisplay();
 }
 
-// Adiciona o listener de clique em cada botão
+// Adds click listener to each button
 buttons.forEach((button) => button.addEventListener("click", handleButtonClick));
 
-// Renderiza o display na primeira carga
+// Renders the display on first load
 renderDisplay();
 
