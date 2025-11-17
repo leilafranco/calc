@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculadora Web - Base</title>
+    <title>Web Calculator - Base</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <!--
-      Esta seção envolve todo o conteúdo da página.
-      Você pode usá-la para centralizar a calculadora e aplicar estilos globais.
+      This section wraps all the page content.
+      You can use it to center the calculator and apply global styles.
     -->
     <main class="calculator-wrapper">
-      <!-- Cabeçalho simples com um título -->
+      <!-- Simple header with a title -->
       <header class="calculator-header">
-        <h1>Calculadora Web</h1>
-        <p>Base estática para você adicionar a lógica depois.</p>
+        <h1>Web Calculator</h1>
+        <p>Static base for you to add the logic later.</p>
       </header>
 
       <!--
-        Este display mostra o número atual e o histórico.
-        Por enquanto é apenas texto estático; você pode conectar com JS mais tarde.
+        This display shows the current number and history.
+        For now it's just static text; you can connect it with JS later.
       -->
       <section class="calculator-display">
         <div class="display-history" id="display-history">0 + 0</div>
@@ -28,9 +28,9 @@
       </section>
 
       <!--
-        Grade de botões.
-        Cada botão possui data-attributes para facilitar a identificação no JS.
-        Você pode adicionar mais botões ou alterar os existentes conforme necessário.
+        Button grid.
+        Each button has data-attributes to facilitate identification in JS.
+        You can add more buttons or modify existing ones as needed.
       -->
       <section class="calculator-grid">
         <button class="btn btn-secondary" data-action="clear">AC</button>
@@ -54,14 +54,14 @@
         <button class="btn btn-accent" data-operator="add">+</button>
 
         <button class="btn btn-zero" data-number="0">0</button>
-        <button class="btn" data-action="decimal">,</button>
+        <button class="btn" data-action="decimal">.</button>
         <button class="btn btn-accent" data-action="equals">=</button>
       </section>
     </main>
 
     <!--
-      Este script será responsável pela lógica.
-      No momento ele só mostra mensagens no console para você entender a estrutura.
+      This script will be responsible for the logic.
+      Currently it only shows console messages for you to understand the structure.
     -->
     <script src="script.js"></script>
   </body>
